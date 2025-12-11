@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compañía de Trabajo para Empleadores - Portal de Empleos Costa Rica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Nuevas variables de color - Paleta sobria y formal */
+            --primary: #001F3F;
+            --primary-light: #0A3A66;
+            --primary-dark: #000D1F;
+            --secondary: #C9A961;
+            --secondary-light: #D4B896;
+            --accent-green: #2C5F3F;
+            --accent-purple: #3E3E4D;
+            --accent-cyan: #1A4D5C;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-light: #999999;
+            --bg-light: #F5F5F5;
+            --bg-white: #FFFFFF;
+            --border-color: #D4D4D4;
+            --success: #2C5F3F;
+            --warning: #8B7355;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #F5F5F5;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--primary-dark);
+            padding: 1.2rem 0;
+            box-shadow: var(--shadow);
+            position: static;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: #FFFFFF;
+            border-radius: 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-left: 0;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 31, 63, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+            font-weight: 700;
+        }
+
+        .btn-secondary:hover {
+            background: #B8944A;
+            border-color: #B8944A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 169, 97, 0.2);
+        }
+
+        .btn-accent {
+            background: var(--accent-green);
+            color: white;
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-accent:hover {
+            background: #1E4228;
+            border-color: #1E4228;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 95, 63, 0.2);
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 0;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:nth-child(2) {
+            border-top-color: var(--secondary);
+        }
+
+        .stat-card:nth-child(3) {
+            border-top-color: var(--accent-green);
+        }
+
+        .stat-card:nth-child(4) {
+            border-top-color: var(--accent-purple);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* ===== CURRICULUM SECTION ===== */
+        .curriculum-section {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 0;
+            margin-bottom: 4rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-right: 0;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .curriculum-templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .template-card {
+            background: #FFFFFF;
+            border: 2px solid var(--border-color);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .template-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .template-card:hover {
+            border-color: var(--secondary);
+            background: #FAFAF8;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .template-card:hover .template-icon,
+        .template-card:hover .template-name {
+            color: var(--secondary);
+        }
+
+        .template-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .template-name {
+            font-weight: 700;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .curriculum-form {
+            background: #FAFAF8;
+            padding: 2.5rem;
+            border-radius: 0;
+            display: none;
+            border: 2px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+        }
+
+        .curriculum-form.active {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== FILTERS SECTION ===== */
+        .filters-section {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-right: 0;
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.05);
+            background: #FAFAF8;
+        }
+
+        /* ===== JOBS GRID ===== */
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .job-card {
+            background: var(--bg-white);
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:nth-child(4n+1) {
+            border-top-color: var(--primary);
+        }
+
+        .job-card:nth-child(4n+2) {
+            border-top-color: var(--secondary);
+        }
+
+        .job-card:nth-child(4n+3) {
+            border-top-color: var(--accent-green);
+        }
+
+        .job-card:nth-child(4n) {
+            border-top-color: var(--accent-purple);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+
+        .company-info h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .company-badge {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 0;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .position {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .job-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: #FAFAF8;
+            border-radius: 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .detail-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .salary {
+            background: var(--accent-green);
+            padding: 1.2rem;
+            border-radius: 0;
+            margin: 1.2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .salary-amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .salary-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .job-actions button {
+            flex: 1;
+            padding: 11px;
+            border: 2px solid var(--primary);
+            background: var(--bg-white);
+            color: var(--primary);
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .job-actions button:nth-child(2) {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .job-actions button:nth-child(1):hover {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 31, 63, 0.2);
+        }
+
+        .job-actions button:nth-child(2):hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(201, 169, 97, 0.2);
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 0;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.05);
+            background: #FAFAF8;
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 0;
+            max-width: 650px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-top: 4px solid var(--primary);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .close-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FAFAF8;
+            border-radius: 0;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+            background: #F0F0F0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            background: var(--bg-white);
+            border-radius: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* New styles for curriculum sections in application modal */
+        .curriculum-section-modal {
+            background: #FAFAF8;
+            padding: 1.5rem;
+            border-radius: 0;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .curriculum-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border-color);
+            background: white;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
+            border-top: 4px solid var(--secondary);
+        }
+
+        footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .filters-grid,
+            .curriculum-templates,
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .job-card {
+                padding: 1.5rem;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">💼 Compañía de Trabajo para Empleadores</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#empleos">Empleos</a></li>
+                    <!--<li><a href="#curriculum">Currículum</a></li>-->
+                    <li><a href="#empresas">Empresas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Tu Mejor Oportunidad Laboral en Costa Rica</h1>
+            <p>Encuentra empleos en las empresas líderes de Costa Rica, conecta rápidamente y avanza en tu carrera con salarios competitivos</p>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('empleos')">Explorar Empleos</button>
+                <button class="btn btn-accent" onclick="scrollToSection('empresas')">Ver Empresas</button>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Empresas Verificadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Empleos Activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Candidatos Conectados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Tasa de Satisfacción</div>
+            </div>
+        </section>
+
+        <!-- Curriculum Section -->
+        <!--<section class="curriculum-section" id="curriculum">
+            <h2 class="section-title">📄 Crea tu Currículum Personalizado</h2>
+            <p class="section-subtitle">Elige una plantilla profesional y personalízala en minutos. Disponible para descargar en PDF</p>
+            <div class="curriculum-templates">
+                <div class="template-card" onclick="selectTemplate('clasico')">
+                    <div class="template-icon">📋</div>
+                    <div class="template-name">Clásico Profesional</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('moderno')">
+                    <div class="template-icon">✨</div>
+                    <div class="template-name">Moderno Minimalista</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('creativo')">
+                    <div class="template-icon">🎨</div>
+                    <div class="template-name">Creativo Dinámico</div>
+                </div>
+                <div class="template-card" onclick="selectTemplate('ejecutivo')">
+                    <div class="template-icon">🏢</div>
+                    <div class="template-name">Ejecutivo Corporativo</div>
+                </div>
+            </div>
+
+            <div class="curriculum-form" id="curriculumForm">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">Información Personal</h3>
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" placeholder="Juan Carlos Pérez Rodríguez" id="fullName">
+                </div>
+                <div class="form-group">
+                    <label>Email Profesional</label>
+                    <input type="email" placeholder="correo@ejemplo.com" id="email">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" placeholder="+506 8000-0000" id="phone">
+                </div>
+                <div class="form-group">
+                    <label>Ubicación</label>
+                    <input type="text" placeholder="San José, Costa Rica" id="location">
+                </div>
+                <div class="form-group">
+                    <label>Perfil Profesional</label>
+                    <textarea placeholder="Breve resumen de tu experiencia, habilidades clave y objetivos profesionales..." id="summary"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Experiencia Laboral</label>
+                    <textarea placeholder="Puesto - Empresa (2020-2024) | Descripción de responsabilidades..." id="experience"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Educación</label>
+                    <textarea placeholder="Carrera Profesional - Universidad (año)..." id="education"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Habilidades Principales</label>
+                    <textarea placeholder="Listar habilidades técnicas y blandas separadas por comas..." id="skills"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveCurriculum()" style="width: 100%; margin-top: 1rem;">✓ Guardar Currículum</button>
+            </div>
+        </section>-->
+
+        <!-- Filters Section -->
+        <section class="filters-section" id="empleos">
+            <h2 class="section-title">🔍 Busca Oportunidades Laborales</h2>
+            <p class="section-subtitle">Filtra por puesto, experiencia, salario y más características</p>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Puesto o Palabra Clave</label>
+                    <input type="text" id="searchJob" placeholder="ej: Desarrollador, Contador..." oninput="filterJobs()">
+                </div>
+                <div class="filter-group">
+                    <label>Empresa</label>
+                    <select id="filterCompany" onchange="filterJobs()">
+                        <option value="">Todas las empresas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Experiencia Requerida</label>
+                    <select id="filterExperience" onchange="filterJobs()">
+                        <option value="">Cualquier nivel</option>
+                        <option value="Junior">Junior (0-1 años)</option>
+                        <option value="Semi-Senior">Semi-Senior (1-3 años)</option>
+                        <option value="Senior">Senior (3+ años)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Salario Mínimo (₡)</label>
+                    <input type="number" id="filterSalary" placeholder="ej: 800000" oninput="filterJobs()">
+                </div>
+                <div class="filter-group">
+                    <label>Sector</label>
+                    <select id="filterSector" onchange="filterJobs()">
+                        <option value="">Todos los sectores</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Finanzas">Finanzas</option>
+                        <option value="Construcción">Construcción</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Salud">Salud</option>
+                        <option value="Educación">Educación</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Modalidad</label>
+                    <select id="filterModality" onchange="filterJobs()">
+                        <option value="">Todas las modalidades</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Remoto">Remoto</option>
+                        <option value="Híbrido">Híbrido</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jobs Grid -->
+        <div class="jobs-grid" id="jobsGrid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            ❌ No se encontraron ofertas que coincidan con tus criterios. Intenta ajustar los filtros.
+        </div>
+    </main>
+
+    <!-- Modal for Job Details -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalJobTitle">Detalles de la Oferta</h2>
+                <span class="close-btn" onclick="closeJobModal()">&times;</span>
+            </div>
+            <div id="modalJobContent"></div>
+            <button class="btn btn-secondary" onclick="applyForJob()" style="width: 100%; margin-top: 1.5rem; padding: 15px;">🚀 Aplicar Ahora</button>
+        </div>
+    </div>
+
+    <!-- Modal for Application with Integrated Curriculum -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Formulario de Aplicación</h2>
+                <span class="close-btn" onclick="closeApplicationModal()">&times;</span>
+            </div>
+            <form onsubmit="submitApplication(event)">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="appName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="appEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" id="appPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría de Experiencia</label>
+                    <select id="appExperience" required>
+                        <option value="">Selecciona tu nivel</option>
+                        <option value="Junior">Junior (0-1 años)</option>
+                        <option value="Semi-Senior">Semi-Senior (1-3 años)</option>
+                        <option value="Senior">Senior (3+ años)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje de Presentación</label>
+                    <textarea id="appMessage" placeholder="Cuéntanos por qué eres ideal para este puesto..." required></textarea>
+                </div>
+
+                <!-- New: Integrated curriculum section with dynamic tabs based on company -->
+                <div class="curriculum-section-modal">
+                    <div class="curriculum-section-title">📄 Adjunta tu Currículum (Adaptado a esta empresa)</div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Personaliza tu currículum según los requisitos específicos de <strong id="curriculumCompanyName">la empresa</strong>
+                    </p>
+                    
+                    <div class="tab-buttons" id="curriculumTabs">
+                        <button type="button" class="tab-btn active" onclick="switchCurriculumTab('general')">General</button>
+                        <button type="button" class="tab-btn" onclick="switchCurriculumTab('adaptado')">Adaptado a Puesto</button>
+                    </div>
+
+                    <!-- General Curriculum Tab -->
+                    <div id="tab-general" class="curriculum-tab">
+                        <div class="form-group">
+                            <label>Experiencia Laboral Relevante</label>
+                            <textarea id="appCurriculumExperience" placeholder="Experiencia laboral relacionada con el puesto..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Educación</label>
+                            <textarea id="appCurriculumEducation" placeholder="Tu formación académica..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Habilidades</label>
+                            <textarea id="appCurriculumSkills" placeholder="Habilidades separadas por comas..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Adapted Curriculum Tab -->
+                    <div id="tab-adaptado" class="curriculum-tab" style="display: none;">
+                        <div id="adaptedCurriculumContent"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 1.5rem;">✓ Enviar Aplicación</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <h3>💼 Compañía de Trabajo para Empleadores</h3>
+        <p>La plataforma de empleos más confiable y elegante de Costa Rica</p>
+        <p style="font-size: 0.95rem; opacity: 0.85;">Conectando talento con oportunidades | Transparencia y rapidez garantizada</p>
+        <div class="footer-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#empleos">Empleos</a>
+            <a href="mailto:conpañiaETC@gmail.com">Contacto: conpañiaETC@gmail.com</a>
+            <a href="tel:+50622223333">Tel: +506 2222-3333</a>
+        </div>
+        <p style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">© 2025 Compañía de Trabajo para Empleadores. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Base de datos de empresas y empleos - 20 empresas costarricenses
+        const jobs = [
+            {
+                id: 1,
+                company: "Banco Nacional de Costa Rica",
+                position: "Analista de Sistemas",
+                sector: "Finanzas",
+                experience: "Semi-Senior",
+                salary: 1800000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Buscamos un Analista de Sistemas con experiencia en desarrollo de aplicaciones financieras y mantenimiento de infraestructura crítica.",
+                requirements: "Java, SQL, Git, JIRA, 2+ años de experiencia",
+                benefits: "Seguro médico, Bonificación anual, Capacitación continuada, Plan de pensión, Ambiente laboral estable",
+                curriculumTemplate: {
+                    focus: "Experiencia en desarrollo de sistemas financieros",
+                    techSkills: "Java, SQL, Git, JIRA, Sistemas de bases de datos",
+                    softSkills: "Análisis de requerimientos, Solución de problemas, Trabajo en equipo",
+                    emphasize: "Proyectos de infraestructura crítica y seguridad de datos"
+                }
+            },
+            {
+                id: 2,
+                company: "CAJA - Caja de Seguro Social",
+                position: "Desarrollador Full Stack",
+                sector: "Finanzas",
+                experience: "Junior",
+                salary: 1400000,
+                modality: "Híbrido",
+                location: "San José",
+                description: "Únete a nuestro equipo de desarrollo en proyectos de modernización tecnológica del sistema de seguridad social.",
+                requirements: "React, Node.js, PostgreSQL, 1+ año de experiencia, Disposición de aprender",
+                benefits: "Teletrabajo 2 días, Capacitación continua, Ambiente colaborativo, Comedor subsidiado, Horario flexible",
+                curriculumTemplate: {
+                    focus: "Desarrollo web completo y proyectos de modernización",
+                    techSkills: "React, Node.js, PostgreSQL, HTML5, CSS3, JavaScript",
+                    softSkills: "Capacidad de aprender, Colaboración, Comunicación",
+                    emphasize: "Proyectos de transformación digital y sistemas públicos"
+                }
+            },
+            {
+                id: 3,
+                company: "BAC Credomatic",
+                position: "Ingeniero DevOps",
+                sector: "Tecnología",
+                experience: "Senior",
+                salary: 2200000,
+                modality: "Remoto",
+                location: "San José",
+                description: "Gestiona nuestra infraestructura en la nube y automatiza procesos de despliegue en ambiente empresarial global.",
+                requirements: "AWS, Docker, Kubernetes, Terraform, 3+ años de experiencia, Inglés fluido",
+                benefits: "100% remoto, Flexibilidad horaria, Seguro familiar, Stock options, Conferencias internacionales",
+                curriculumTemplate: {
+                    focus: "Infraestructura en la nube y automatización",
+                    techSkills: "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux",
+                    softSkills: "Liderazgo técnico, Resolución de problemas complejos, Documentación clara",
+                    emphasize: "Experiencia en entornos empresariales globales y alta disponibilidad"
+                }
+            },
+            {
+                id: 4,
+                company: "Sykes Costa Rica",
+                position: "Ejecutivo de Soporte Técnico",
+                sector: "Tecnología",
+                experience: "Junior",
+                salary: 900000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Brinda soporte técnico a clientes internacionales en inglés y español, resolviendo problemas complejos.",
+                requirements: "Inglés fluido, Conocimientos técnicos básicos, Excelente servicio al cliente, Paciencia",
+                benefits: "Capacitación inicial, Comisiones, Ambiente multicultural, Uniformes, Oportunidades de crecimiento",
+                curriculumTemplate: {
+                    focus: "Servicio al cliente y soporte técnico",
+                    techSkills: "Soporte de hardware, Sistemas operativos, Office, Troubleshooting básico",
+                    softSkills: "Atención al cliente, Paciencia, Bilingüismo (Inglés-Español), Comunicación clara",
+                    emphasize: "Experiencia en atención a clientes internacionales y resolución de problemas"
+                }
+            },
+            {
+                id: 5,
+                company: "Constructora Inarco",
+                position: "Ingeniero Civil",
+                sector: "Construcción",
+                experience: "Semi-Senior",
+                salary: 1900000,
+                modality: "Presencial",
+                location: "Escazú",
+                description: "Supervisa proyectos de construcción residencial y comercial de gran escala con equipos multidisciplinarios.",
+                requirements: "Experiencia en proyectos, AutoCAD, BIM, 2+ años, Licencia profesional vigente",
+                benefits: "Bonificación por proyectos, Equipo de protección, Vehículo, Viáticos, Seguro integral",
+                curriculumTemplate: {
+                    focus: "Supervisión de proyectos de construcción",
+                    techSkills: "AutoCAD, BIM, MS Project, Cálculos estructurales",
+                    softSkills: "Liderazgo de equipos, Gestión de proyectos, Seguridad en obra",
+                    emphasize: "Proyectos residenciales y comerciales de gran escala"
+                }
+            },
+            {
+                id: 6,
+                company: "Caja Rural",
+                position: "Contador General",
+                sector: "Finanzas",
+                experience: "Semi-Senior",
+                salary: 1600000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Gestiona la contabilidad general, reportes financieros y cumplimiento normativo de la institución.",
+                requirements: "CPA/Contador Público, 2+ años de experiencia, Conocimiento de regulaciones locales, Excel avanzado",
+                benefits: "Seguro médico, Bonificación trimestral, Estudio reembolsado, Estabilidad laboral, Pension",
+                curriculumTemplate: {
+                    focus: "Contabilidad general y reportes financieros",
+                    techSkills: "Contabilidad, Excel avanzado, Software contable, Regulaciones fiscales costarricenses",
+                    softSkills: "Precisión, Análisis financiero, Cumplimiento normativo, Atención al detalle",
+                    emphasize: "Experiencia en instituciones financieras y conocimiento de regulaciones locales"
+                }
+            },
+            {
+                id: 7,
+                company: "Walmart Costa Rica",
+                position: "Gerente de Tienda",
+                sector: "Retail",
+                experience: "Senior",
+                salary: 1700000,
+                modality: "Presencial",
+                location: "Diversas Sucursales",
+                description: "Lidera operaciones, equipo y estrategia comercial en una de nuestras sucursales de retail.",
+                requirements: "5+ años en retail, Liderazgo probado, Gestión presupuestaria, Excelencia operativa",
+                benefits: "Comisiones, Ascensos rápidos, Plan de beneficios, Descuentos, Bonificación anual",
+                curriculumTemplate: {
+                    focus: "Liderazgo y gestión de operaciones retail",
+                    techSkills: "Sistemas POS, Gestión de inventario, Excel, Software de reportes",
+                    softSkills: "Liderazgo, Gestión de presupuesto, Servicio al cliente, Negociación",
+                    emphasize: "Experiencia probada en liderazgo de equipos y cumplimiento de metas de ventas"
+                }
+            },
+            {
+                id: 8,
+                company: "CIMPA Costa Rica",
+                position: "Especialista SEO/SEM",
+                sector: "Tecnología",
+                experience: "Semi-Senior",
+                salary: 1500000,
+                modality: "Híbrido",
+                location: "San José",
+                description: "Gestiona estrategias de marketing digital para clientes internacionales y locales de alto nivel.",
+                requirements: "Google Ads, SEO, Analytics, 2+ años, WordPress, Analítica de datos",
+                benefits: "Bonificación por proyectos, Home office, Cursos certificados, Ambiente creativo, Flexibilidad",
+                curriculumTemplate: {
+                    focus: "Marketing digital y estrategias de posicionamiento",
+                    techSkills: "Google Ads, SEO, Google Analytics, WordPress, HTML básico",
+                    softSkills: "Analítica de datos, Creatividad, Comunicación digital, Pensamiento estratégico",
+                    emphasize: "Experiencia en campañas para clientes internacionales y resultados medibles"
+                }
+            },
+            {
+                id: 9,
+                company: "CAJA Clínic",
+                position: "Enfermera Hospitalaria",
+                sector: "Salud",
+                experience: "Junior",
+                salary: 1200000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Brinda cuidados de enfermería especializados en unidad de hospitalización general y cirugía.",
+                requirements: "Licencia válida, Turno rotativo incluido, Capacitación continuada, Certificaciones requeridas",
+                benefits: "Seguro médico, Bonificación especial, Uniforme, Comedor, Plan de pensión",
+                curriculumTemplate: {
+                    focus: "Cuidados de enfermería hospitalaria",
+                    techSkills: "Procedimientos clínicos, Registros médicos, Monitoreo de pacientes",
+                    softSkills: "Empatía, Atención al detalle, Trabajo bajo presión, Comunicación con pacientes",
+                    emphasize: "Experiencia en hospitalización y cuidados especializados"
+                }
+            },
+            {
+                id: 10,
+                company: "Soluciones Inteligentes CR",
+                position: "Desarrollador Backend",
+                sector: "Tecnología",
+                experience: "Semi-Senior",
+                salary: 1800000,
+                modality: "Remoto",
+                location: "San José",
+                description: "Desarrolla APIs y servicios backend para plataformas SaaS con estándares internacionales.",
+                requirements: "Python/Java, REST APIs, bases de datos SQL, 2+ años, Versionamiento Git",
+                benefits: "100% remoto, Stock options, Flexibilidad horaria, Conferencias tech, Equipo profesional",
+                curriculumTemplate: {
+                    focus: "Desarrollo de APIs y servicios backend",
+                    techSkills: "Python/Java, REST APIs, SQL, Git, Microservicios, Docker",
+                    softSkills: "Codificación limpia, Documentación, Testing, Colaboración ágil",
+                    emphasize: "Experiencia en plataformas SaaS y estándares internacionales"
+                }
+            },
+            {
+                id: 11,
+                company: "Instituto Nacional de Seguros (INS)",
+                position: "Gestor de Pólizas",
+                sector: "Finanzas",
+                experience: "Junior",
+                salary: 1100000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Gestiona solicitudes de pólizas, servicio al asegurado y procesamiento de documentos.",
+                requirements: "Excelente servicio, Organización, Conocimiento básico de seguros, Atención al detalle",
+                benefits: "Estabilidad laboral, Bonificación anual, Capacitación, Plan de pensión, Seguro médico",
+                curriculumTemplate: {
+                    focus: "Gestión de pólizas y servicio al cliente",
+                    techSkills: "Sistemas de seguros, Office, Bases de datos, Tramitología",
+                    softSkills: "Servicio al cliente, Organización, Precisión, Atención al detalle",
+                    emphasize: "Experiencia en procesamiento de documentos y atención a asegurados"
+                }
+            },
+            {
+                id: 12,
+                company: "Ministerio de Educación Pública",
+                position: "Docente Secundaria - Matemática",
+                sector: "Educación",
+                experience: "Junior",
+                salary: 950000,
+                modality: "Presencial",
+                location: "Diversas Ubicaciones",
+                description: "Enseña matemática en institutos secundarios públicos con metodologías innovadoras.",
+                requirements: "Licenciatura en Educación, Cédula al día, Conocimiento pedagógico, Dedicación",
+                benefits: "Pensión CAJA, Capacitaciones, Estabilidad laboral, Beneficios públicos, Vocación garantizada",
+                curriculumTemplate: {
+                    focus: "Enseñanza de matemática con metodologías innovadoras",
+                    techSkills: "Pedagogía, TIC en educación, Plataformas educativas",
+                    softSkills: "Paciencia, Comunicación clara, Motivación de estudiantes, Adaptabilidad",
+                    emphasize: "Experiencia docente y metodologías pedagógicas innovadoras"
+                }
+            },
+            {
+                id: 13,
+                company: "Microsoft Costa Rica",
+                position: "Solutions Architect",
+                sector: "Tecnología",
+                experience: "Senior",
+                salary: 2500000,
+                modality: "Híbrido",
+                location: "San José",
+                description: "Diseña soluciones en la nube para clientes empresariales con arquitectura de sistemas complejos.",
+                requirements: "Azure, Arquitectura cloud, 5+ años, Certificaciones Microsoft, Inglés fluido, Consultoría",
+                benefits: "Stock options, Conferencias globales, Trabajo colaborativo, Flexibilidad total, Bonificación premium",
+                curriculumTemplate: {
+                    focus: "Arquitectura de soluciones cloud empresariales",
+                    techSkills: "Azure, Arquitectura cloud, Seguridad, Escalabilidad, Certificaciones Microsoft",
+                    softSkills: "Consultoría, Liderazgo técnico, Comunicación ejecutiva, Visión estratégica",
+                    emphasize: "Experiencia con clientes empresariales y soluciones complejas a gran escala"
+                }
+            },
+            {
+                id: 14,
+                company: "SODEXO Costa Rica",
+                position: "Jefe de Cocina",
+                sector: "Retail",
+                experience: "Semi-Senior",
+                salary: 1400000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Supervisa la producción de alimentos en comedores corporativos con estándares de calidad internacional.",
+                requirements: "Experiencia en cocina industrial, 2+ años, Manipulación de alimentos, Liderazgo de equipo",
+                benefits: "Uniforme, Comidas, Bonificación, Capacitación, Ambiente internacional",
+                curriculumTemplate: {
+                    focus: "Gestión de cocina industrial y control de calidad",
+                    techSkills: "Cocina industrial, Gestión de inventario, Higiene alimentaria, Planificación de menús",
+                    softSkills: "Liderazgo de equipos, Gestión de costos, Calidad, Eficiencia operativa",
+                    emphasize: "Experiencia en comedores corporativos con estándares internacionales"
+                }
+            },
+            {
+                id: 15,
+                company: "Accenture Costa Rica",
+                position: "Junior Developer",
+                sector: "Tecnología",
+                experience: "Junior",
+                salary: 1300000,
+                modality: "Híbrido",
+                location: "San José",
+                description: "Únete a nuestro programa de formación en tecnología para recién graduados con potencial.",
+                requirements: "Recién graduado, JavaScript/Java, Disposición de aprender, Inglés básico",
+                benefits: "Mentoring, Certificaciones pagadas, Ambiente colaborativo, Crecimiento acelerado, Viajes de trabajo",
+                curriculumTemplate: {
+                    focus: "Desarrollo de software para recién graduados",
+                    techSkills: "JavaScript/Java, HTML, CSS, Control de versiones, Bases de datos",
+                    softSkills: "Disposición de aprender, Trabajo en equipo, Comunicación, Inglés básico",
+                    emphasize: "Potencial para crecer y formación continua"
+                }
+            },
+            {
+                id: 16,
+                company: "Municipalidad de San José",
+                position: "Inspector de Construcción",
+                sector: "Construcción",
+                experience: "Semi-Senior",
+                salary: 1350000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Inspecciona proyectos de construcción y verifica cumplimiento de normas y regulaciones.",
+                requirements: "Experiencia en construcción, 2+ años, Conocimiento de normas, Autoridad en campo",
+                benefits: "Estabilidad, Bonificación, Capacitación, Seguro, Movilidad",
+                curriculumTemplate: {
+                    focus: "Inspección y supervisión de proyectos de construcción",
+                    techSkills: "Conocimiento de normas constructivas, Mediciones, Documentación técnica",
+                    softSkills: "Autoridad, Comunicación clara, Cumplimiento normativo, Resolución de conflictos",
+                    emphasize: "Experiencia en inspección de obras y conocimiento de regulaciones"
+                }
+            },
+            {
+                id: 17,
+                company: "Toyota de Costa Rica",
+                position: "Técnico Automotriz",
+                sector: "Retail",
+                experience: "Semi-Senior",
+                salary: 1550000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Realiza mantenimiento y reparación de vehículos Toyota con herramientas y técnicas avanzadas.",
+                requirements: "Certificación técnica, 2+ años, Herramientas especializadas, Precisión",
+                benefits: "Uniforme, Herramientas, Descuentos en servicios, Bonificación, Capacitación Toyota",
+                curriculumTemplate: {
+                    focus: "Mantenimiento y reparación de vehículos Toyota",
+                    techSkills: "Diagnóstico automotriz, Herramientas especializadas, Mecánica, Electricidad automotriz",
+                    softSkills: "Precisión, Eficiencia, Atención al detalle, Servicio al cliente",
+                    emphasize: "Experiencia con vehículos Toyota y técnicas avanzadas"
+                }
+            },
+            {
+                id: 18,
+                company: "CAJA Clínica San José",
+                position: "Psicólogo Clínico",
+                sector: "Salud",
+                experience: "Junior",
+                salary: 1300000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Brinda atención psicológica a asegurados en clínicas especializadas con enfoque integral.",
+                requirements: "Psicólogo colegiado, Licencia vigente, Orientación clínica, Empatía",
+                benefits: "Seguro, Capacitación, Ambiente estable, Plan de pensión, Bonificación",
+                curriculumTemplate: {
+                    focus: "Atención psicológica clínica integral",
+                    techSkills: "Terapias psicológicas, Evaluaciones clínicas, Registros médicos",
+                    softSkills: "Empatía, Escucha activa, Confidencialidad, Comunicación terapéutica",
+                    emphasize: "Experiencia en atención clínica a asegurados"
+                }
+            },
+            {
+                id: 19,
+                company: "Google Costa Rica",
+                position: "Data Analyst",
+                sector: "Tecnología",
+                experience: "Semi-Senior",
+                salary: 2000000,
+                modality: "Remoto",
+                location: "San José",
+                description: "Analiza datos para optimizar campañas publicitarias globales con millones de usuarios.",
+                requirements: "SQL, Python, Tableau, 2+ años, Inglés fluido, Machine Learning básico",
+                benefits: "100% remoto, Beneficios premium, Stock options, Conferencias globales, Innovación constante",
+                curriculumTemplate: {
+                    focus: "Análisis de datos para optimización de campañas",
+                    techSkills: "SQL, Python, Tableau, Google Analytics, BigQuery, Machine Learning básico",
+                    softSkills: "Pensamiento analítico, Storytelling de datos, Comunicación clara, Inglés fluido",
+                    emphasize: "Experiencia en análisis de grandes volúmenes de datos y optimización de campañas"
+                }
+            },
+            {
+                id: 20,
+                company: "Banco Crédito e Inversiones",
+                position: "Ejecutivo de Créditos",
+                sector: "Finanzas",
+                experience: "Semi-Senior",
+                salary: 1650000,
+                modality: "Presencial",
+                location: "San José",
+                description: "Gestiona solicitudes de crédito, análisis financiero y relación con clientes corporativos.",
+                requirements: "Experiencia en banca, 2+ años, Análisis financiero, Negociación",
+                benefits: "Comisiones, Bonificación, Ascensos rápidos, Estabilidad, Plan de pensión",
+                curriculumTemplate: {
+                    focus: "Gestión de créditos y análisis financiero",
+                    techSkills: "Análisis financiero, Software bancario, Excel avanzado, Evaluación de crédito",
+                    softSkills: "Negociación, Relaciones comerciales, Análisis de riesgo, Comunicación ejecutiva",
+                    emphasize: "Experiencia en banca y análisis financiero de clientes corporativos"
+                }
+            }
+        ];
+
+        let selectedJob = null;
+
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJobs();
+            populateFilters();
+        });
+
+
+        function switchCurriculumTab(tabName) {
+            // Hide all tabs
+            document.getElementById('tab-general').style.display = 'none';
+            document.getElementById('tab-adaptado').style.display = 'none';
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById('tab-' + tabName).style.display = 'block';
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Generate adapted curriculum content if viewing adapted tab
+            if (tabName === 'adaptado' && selectedJob) {
+                generateAdaptedCurriculum();
+            }
+        }
+
+        function generateAdaptedCurriculum() {
+            if (!selectedJob || !selectedJob.curriculumTemplate) return;
+
+            const template = selectedJob.curriculumTemplate;
+            let adaptedContent = `
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; font-style: italic;">
+                    Este currículum está personalizado para destacar las habilidades más relevantes para este puesto.
+                </p>
+                <div class="form-group">
+                    <label>Enfoque Principal (${selectedJob.position})</label>
+                    <div style="background: #F5F5F5; padding: 1rem; border-left: 4px solid var(--primary); margin-top: 0.5rem;">
+                        <strong style="color: var(--primary);">📌 ${template.focus}</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Resalta tu experiencia en: ${template.emphasize}
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Habilidades Técnicas Prioritarias</label>
+                    <div style="background: #F5F5F5; padding: 1rem; border-left: 4px solid var(--secondary); margin-top: 0.5rem;">
+                        <p style="margin: 0; color: var(--text-secondary);">
+                            <strong style="color: var(--primary);">🔧</strong> ${template.techSkills}
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Habilidades Blandas Prioritarias</label>
+                    <div style="background: #F5F5F5; padding: 1rem; border-left: 4px solid var(--accent-green); margin-top: 0.5rem;">
+                        <p style="margin: 0; color: var(--text-secondary);">
+                            <strong style="color: var(--primary);">💡</strong> ${template.softSkills}
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Experiencia Laboral (Adaptada)</label>
+                    <textarea id="appCurriculumExperienceAdapted" placeholder="Describe aquí tu experiencia enfatizando: ${template.emphasize}..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Educación y Certificaciones Relevantes</label>
+                    <textarea id="appCurriculumEducationAdapted" placeholder="Incluye educación formal y certificaciones en: ${template.techSkills}..."></textarea>
+                </div>
+            `;
+
+            document.getElementById('adaptedCurriculumContent').innerHTML = adaptedContent;
+        }
+
+        // Cargar empleos
+        function loadJobs() {
+            displayJobs(jobs);
+        }
+
+
+        // Mostrar empleos en grid
+        function displayJobs(jobsToDisplay) {
+            const jobsGrid = document.getElementById('jobsGrid');
+            const noResults = document.getElementById('noResults');
+
+            jobsGrid.innerHTML = '';
+
+            if (jobsToDisplay.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            jobsToDisplay.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card';
+                jobCard.innerHTML = `
+                    <div class="company-header">
+                        <div class="company-info">
+                            <h3>${job.company}</h3>
+                            <div class="company-badge">${job.sector}</div>
+                        </div>
+                    </div>
+                    <div class="position">${job.position}</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>${job.location}</strong></span>
+                        </div>
+                        <div class="job-detail">
+                            <span class="detail-icon">📊</span>
+                            <span>${job.experience}</span>
+                        </div>
+                        <div class="job-detail">
+                            <span class="detail-icon">🏢</span>
+                            <span>${job.modality}</span>
+                        </div>
+                    </div>
+                    <div class="salary">
+                        <div class="salary-amount">₡${job.salary.toLocaleString()}</div>
+                        <div class="salary-label">Salario mensual estimado</div>
+                    </div>
+                    <div class="job-actions">
+                        <button onclick="viewJobDetails(${job.id})">Ver Detalles</button>
+                        <button onclick="viewJobDetails(${job.id}); setTimeout(applyForJob, 500)">Aplicar</button>
+                    </div>
+                `;
+                jobsGrid.appendChild(jobCard);
+            });
+        }
+
+        // Poblar filtros
+        function populateFilters() {
+            const companySet = new Set(jobs.map(j => j.company));
+            const companySelect = document.getElementById('filterCompany');
+
+            Array.from(companySet).sort().forEach(company => {
+                const option = document.createElement('option');
+                option.value = company;
+                option.textContent = company;
+                companySelect.appendChild(option);
+            });
+        }
+
+        // Filtrar empleos
+        function filterJobs() {
+            const searchJob = document.getElementById('searchJob').value.toLowerCase();
+            const filterCompany = document.getElementById('filterCompany').value;
+            const filterExperience = document.getElementById('filterExperience').value;
+            const filterSalary = parseInt(document.getElementById('filterSalary').value) || 0;
+            const filterSector = document.getElementById('filterSector').value;
+            const filterModality = document.getElementById('filterModality').value;
+
+            const filtered = jobs.filter(job => {
+                const matchSearch = job.position.toLowerCase().includes(searchJob) || 
+                                  job.company.toLowerCase().includes(searchJob) ||
+                                  job.description.toLowerCase().includes(searchJob);
+                const matchCompany = !filterCompany || job.company === filterCompany;
+                const matchExperience = !filterExperience || job.experience === filterExperience;
+                const matchSalary = job.salary >= filterSalary;
+                const matchSector = !filterSector || job.sector === filterSector;
+                const matchModality = !filterModality || job.modality === filterModality;
+
+                return matchSearch && matchCompany && matchExperience && matchSalary && matchSector && matchModality;
+            });
+
+            displayJobs(filtered);
+        }
+
+        // Ver detalles del empleo
+        function viewJobDetails(jobId) {
+            selectedJob = jobs.find(j => j.id === jobId);
+            if (selectedJob) {
+                document.getElementById('modalJobTitle').textContent = selectedJob.position + ' - ' + selectedJob.company;
+                document.getElementById('modalJobContent').innerHTML = `
+                    <p><strong>🏢 Empresa:</strong> ${selectedJob.company}</p>
+                    <p><strong>📍 Ubicación:</strong> ${selectedJob.location}</p>
+                    <p><strong>🔧 Sector:</strong> ${selectedJob.sector}</p>
+                    <p><strong>🏠 Modalidad:</strong> ${selectedJob.modality}</p>
+                    <p><strong>📊 Experiencia Requerida:</strong> ${selectedJob.experience}</p>
+                    <p><strong>💰 Salario Estimado:</strong> <span style="color: var(--success); font-weight: bold;">₡${selectedJob.salary.toLocaleString()}</span> mensuales</p>
+                    <hr style="margin: 1.2rem 0; border: 1px solid var(--border-color);">
+                    <p><strong>📋 Descripción:</strong><br>${selectedJob.description}</p>
+                    <p><strong>✅ Requisitos:</strong><br>${selectedJob.requirements}</p>
+                    <p><strong>🎁 Beneficios:</strong><br>${selectedJob.benefits}</p>
+                `;
+                document.getElementById('jobModal').classList.add('active');
+            }
+        }
+
+        // Cerrar modal de empleo
+        function closeJobModal() {
+            document.getElementById('jobModal').classList.remove('active');
+        }
+
+        function applyForJob() {
+            closeJobModal();
+            
+            // Update company name in curriculum section
+            if (selectedJob) {
+                document.getElementById('curriculumCompanyName').textContent = selectedJob.company + ' - ' + selectedJob.position;
+                // Reset curriculum tabs to general view
+                document.getElementById('tab-general').style.display = 'block';
+                document.getElementById('tab-adaptado').style.display = 'none';
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            }
+            
+            document.getElementById('applicationModal').classList.add('active');
+        }
+
+        // Cerrar modal de aplicación
+        function closeApplicationModal() {
+            document.getElementById('applicationModal').classList.remove('active');
+        }
+
+        // Enviar aplicación
+        function submitApplication(event) {
+            event.preventDefault();
+            const name = document.getElementById('appName').value;
+            const email = document.getElementById('appEmail').value;
+            const phone = document.getElementById('appPhone').value;
+            const experience = document.getElementById('appExperience').value;
+
+            alert(`✅ ¡Gracias ${name}!\n\nTu aplicación para el puesto de:\n${selectedJob.position} en ${selectedJob.company}\n\nHa sido enviada exitosamente.\n\nContacto: ${email} | ${phone}\nNivel: ${experience}\n\nTe contactaremos pronto con más información. ¡Mucho éxito!`);
+
+            closeApplicationModal();
+            document.getElementById('applicationModal').querySelector('form').reset();
+        }
+
+        // Curriculum section
+        function selectTemplate(template) {
+            document.getElementById('curriculumForm').classList.add('active');
+        }
+
+        function saveCurriculum() {
+            const fullName = document.getElementById('fullName').value;
+            if (!fullName) {
+                alert('Por favor completa al menos el nombre.');
+                return;
+            }
+            alert('✅ ¡Currículum guardado exitosamente!\n\nNombre: ' + fullName + '\n\nAhora podrás aplicar rápidamente a los empleos con tu información actualizada.');
+            document.getElementById('curriculumForm').classList.remove('active');
+        }
+
+        function openCurriculumModal() {
+            document.getElementById('curriculumForm').classList.add('active');
+            setTimeout(() => {
+                document.querySelector('#curriculum').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Cerrar modales al hacer click fuera
+        window.onclick = function(event) {
+            const jobModal = document.getElementById('jobModal');
+            const appModal = document.getElementById('applicationModal');
+
+            if (event.target === jobModal) {
+                jobModal.classList.remove('active');
+            }
+            if (event.target === appModal) {
+                appModal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
